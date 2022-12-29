@@ -89,4 +89,4 @@ Esperamos de você duas entregas: o código no GitHub e um vídeo explicativo no
 
 ### Prazo limite de entrega
 
-O pull request com sua solução do desafio deve ser feito até a data especificada no corpo do email que você recebeu com a descrição do desafio.
+O pull request com sua solução do desafio deve ser feito até a data especificada no corpo do email que você recebeu com a descrição do desafio (No caso, 10/01/2023).
