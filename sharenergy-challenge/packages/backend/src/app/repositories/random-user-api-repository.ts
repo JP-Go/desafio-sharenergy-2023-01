@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import RandomUserApiMapper, {
   RandomApiUser,
-} from '../mappers/random-user-api-mapper';
+} from '../mappers/user/random-user-api-mapper';
 import UserRepository from './user-repository';
 
 @Injectable()
