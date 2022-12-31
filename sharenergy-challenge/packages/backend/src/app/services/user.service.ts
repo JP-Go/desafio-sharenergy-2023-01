@@ -5,7 +5,7 @@ import UserRepository from '../repositories/user-repository';
 export default class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async getUsers(page: number, limit: number) {
-    return await this.userRepository.getUsers(page, limit);
+  async getUsers(page: number, results: number) {
+    return await this.userRepository.getUsers(page, results);
   }
 }

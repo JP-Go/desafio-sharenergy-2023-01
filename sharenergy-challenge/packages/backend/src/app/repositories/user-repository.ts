@@ -3,5 +3,5 @@ import User from '../entities/user';
 
 @Injectable()
 export default abstract class UserRepository {
-  abstract getUsers: (page?: number, limit?: number) => Promise<User[]>;
+  abstract getUsers: (page?: number, results?: number) => Promise<User[]>;
 }
