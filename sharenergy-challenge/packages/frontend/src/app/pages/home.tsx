@@ -3,27 +3,28 @@ import User, { UserProps } from '../components/User';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/authContext';
+import PageCounter from '../components/PageCounter';
+import { useQuery } from 'react-query';
+import { fetchUsers } from '../services/randomUserApi';
 
 export default function Home() {
   const { authState } = useAuth();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  const [users, setUsers] = useState<UserProps[] | null>(null);
-
-  async function fetchUsers() {
-    const users = await (
-      await fetch(`http://localhost:3333/api/user?page=${page}`)
-    ).json();
-    setUsers(() => users);
-  }
+  const [resultsPerPage, setResultsPerPage] = useState(10);
+  const [users, setUsers] = useState<UserProps[]>();
+  const { data, isLoading } = useQuery(
+    ['get-users', page, resultsPerPage],
+    () => fetchUsers(page, resultsPerPage)
+  );
 
   useEffect(() => {
     if (!authState.loggedIn) navigate('/', { replace: true });
   }, [authState.loggedIn]);
 
   useEffect(() => {
-    fetchUsers();
-  }, [page]);
+    setUsers(data);
+  }, [data]);
 
   function prevPage() {
     if (page !== 1) setPage((v) => v - 1);
@@ -37,28 +38,18 @@ export default function Home() {
       <Header />
       <main className="w-4/5 mx-auto mt-8">
         <h1 className="font-bold text-2xl text-center w-full mb-4">Usuários</h1>
-        <div className="w-1/5">
-          <p className="font-semibold text-center mb-2">Página</p>
-          <div className="bg-white w-full grid grid-cols-3 place-content-center place-items-center rounded-lg p-2">
-            <button
-              className="w-4/5 h-full text-white bg-indigo-500 rounded-lg"
-              onClick={prevPage}
-            >
-              {'<'}
-            </button>
-            <span>{page}</span>
-            <button
-              className="w-4/5 h-full text-white bg-indigo-500 rounded-lg"
-              onClick={nextPage}
-            >
-              {'>'}
-            </button>
-          </div>
-        </div>
-        <div className="mx-auto flex flex-col gap-4 mt-4">
-          {users!.map((user) => (
-            <User key={user.username} {...user} />
-          ))}
+        <PageCounter
+          page={page}
+          prevPageAction={prevPage}
+          nextPageAction={nextPage}
+        />
+        <div className="mx-auto flex flex-col gap-4 mt-4 mb-8">
+          {isLoading ? (
+            <p className="text-center text-2xl font-bold">Loading...</p>
+          ) : (
+            users &&
+            users!.map((user) => <User key={user.username} {...user} />)
+          )}
         </div>
       </main>
     </>
