@@ -1,4 +1,4 @@
-interface UserProps {
+export interface UserProps {
   avatarUrl: string;
   fullName: string;
   email: string;
@@ -14,24 +14,24 @@ export default function User({
   username,
 }: UserProps) {
   return (
-    <div className="w-4/5 bg-white mx-auto flex items-center gap-8 p-4">
+    <div className="w-full bg-white mx-auto flex items-center gap-8 p-4 rounded-lg">
       <img
-        src="https://randomuser.me/api/portraits/women/96.jpg"
+        src={avatarUrl}
         alt={avatarUrl}
         className="h-24 w-24 rounded-full outline outline-2 outline-indigo-500 "
       />
       <div>
-        <p className="font-semibold">{fullName}</p>
+        <p className="font-bold">{fullName}</p>
         <p>
-          <span className="font-semibold">Idade: </span>
+          <span className="font-medium">Idade: </span>
           {age}
         </p>
         <p>
-          <span className="font-semibold">E-mail: </span>
+          <span className="font-medium">E-mail: </span>
           {email}
         </p>
         <p>
-          <span className="font-semibold">Usuário: </span>
+          <span className="font-medium">Usuário: </span>
           {username}
         </p>
       </div>
