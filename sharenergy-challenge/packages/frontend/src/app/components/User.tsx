@@ -1,5 +1,5 @@
 export interface UserProps {
-  avatarUrl: string;
+  pictureUrl: string;
   fullName: string;
   email: string;
   username: string;
@@ -7,7 +7,7 @@ export interface UserProps {
 }
 
 export default function User({
-  avatarUrl,
+  pictureUrl,
   age,
   fullName,
   email,
@@ -16,8 +16,8 @@ export default function User({
   return (
     <div className="w-full bg-white mx-auto flex items-center gap-8 p-4 rounded-lg">
       <img
-        src={avatarUrl}
-        alt={avatarUrl}
+        src={pictureUrl}
+        alt={pictureUrl}
         className="h-24 w-24 rounded-full outline outline-2 outline-indigo-500 "
       />
       <div>
