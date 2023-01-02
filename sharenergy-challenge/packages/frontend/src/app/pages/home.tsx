@@ -6,6 +6,7 @@ import { useAuth } from '../lib/authContext';
 import PageCounter from '../components/PageCounter';
 import { useQuery } from 'react-query';
 import { fetchUsers } from '../services/randomUserApi';
+import ResultsPerPageControl from '../components/ResultsPerPageControl';
 
 export default function Home() {
   const { authState } = useAuth();
@@ -38,11 +39,20 @@ export default function Home() {
       <Header />
       <main className="w-4/5 mx-auto mt-8">
         <h1 className="font-bold text-2xl text-center w-full mb-4">Usuários</h1>
-        <PageCounter
-          page={page}
-          prevPageAction={prevPage}
-          nextPageAction={nextPage}
-        />
+        <div className="w-full flex items-end">
+          <PageCounter
+            page={page}
+            prevPageAction={prevPage}
+            nextPageAction={nextPage}
+          />
+          <div className="ml-auto self-end">
+            <ResultsPerPageControl
+              resultsPerPage={resultsPerPage}
+              setter={setResultsPerPage}
+            />
+          </div>
+        </div>
+
         <div className="mx-auto flex flex-col gap-4 mt-4 mb-8">
           {isLoading ? (
             <p className="text-center text-2xl font-bold">Loading...</p>
@@ -51,6 +61,12 @@ export default function Home() {
             users!.map((user) => <User key={user.username} {...user} />)
           )}
         </div>
+
+        <PageCounter
+          page={page}
+          prevPageAction={prevPage}
+          nextPageAction={nextPage}
+        />
       </main>
     </>
   );
