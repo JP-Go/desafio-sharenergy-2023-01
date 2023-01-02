@@ -1,35 +1,15 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './lib/authContext';
 import Home from './pages/home';
 import Login from './pages/login';
-import { AuthContext } from './lib/authContext';
-import { useState } from 'react';
 
-export function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const authState = {
-    loggedIn,
-    login: (username: string, password: string) => {
-      if (username === 'desafiosharenergy' && password === 'sh@r3n3rgy') {
-        setLoggedIn(true);
-        return true;
-      }
-      return false;
-    },
-    logout: () => {
-      setLoggedIn(false);
-    },
-  };
+export default function App() {
   return (
-    <AuthContext.Provider value={authState}>
+    <AuthProvider>
       <Routes>
-        <Route
-          path="/"
-          element={loggedIn ? <Home /> : <Navigate to="/login" />}
-        />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
-
-export default App;

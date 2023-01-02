@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/authContext';
 
 const Login = () => {
-  const { loggedIn, login } = useAuth();
+  const { authState, login } = useAuth();
 
   useEffect(() => {
-    if (loggedIn) navigate('/', { replace: true });
-  }, [loggedIn]);
+    if (authState.loggedIn) navigate('/home', { replace: true });
+  }, [authState.loggedIn]);
 
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
