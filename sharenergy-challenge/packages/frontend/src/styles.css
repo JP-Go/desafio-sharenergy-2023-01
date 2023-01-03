@@ -9,3 +9,17 @@
     @apply bg-gray-200;
   }
 }
+
+@layer components {
+  .base-header-item {
+    @apply px-4 py-2 h-full cursor-pointer;
+  }
+
+  .active-header-item {
+    @apply base-header-item bg-indigo-500 text-white hover:bg-indigo-600;
+  }
+
+  .inactive-header-item {
+    @apply base-header-item hover:bg-gray-100;
+  }
+}
