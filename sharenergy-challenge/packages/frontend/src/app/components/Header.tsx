@@ -1,21 +1,43 @@
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../lib/authContext';
 
 export default function Header() {
   const { logout } = useAuth();
+  const { pathname } = useLocation();
 
   return (
     <nav className="h-12 bg-white w-full">
       <ul className="h-full flex justify-end font-bold divide-x">
-        <li className="px-4 py-2 h-full cursor-pointer bg-indigo-500 text-white hover:bg-indigo-600">
-          User Listing
+        <li
+          className={`${
+            pathname === '/home' ? 'active-header-item' : 'inactive-header-item'
+          }`}
+        >
+          <Link to={'/home'}>User Listing</Link>
         </li>
-        <li className="px-4 py-2 h-full cursor-pointer hover:bg-gray-100">
-          HTTP Cat
+        <li
+          className={`${
+            pathname === '/http-cat'
+              ? 'active-header-item'
+              : 'inactive-header-item'
+          }`}
+        >
+          <Link to={'/http-cat'}>HTTP Cat </Link>
         </li>
-        <li className="px-4 py-2 h-full cursor-pointer hover:bg-gray-100">
+        <li
+          className={`${
+            pathname === '/dog' ? 'active-header-item' : 'inactive-header-item'
+          }`}
+        >
           Random Dog
         </li>
-        <li className="px-4 py-2 h-full cursor-pointer hover:bg-gray-100">
+        <li
+          className={`${
+            pathname === '/clients'
+              ? 'active-header-item'
+              : 'inactive-header-item'
+          }`}
+        >
           Clients
         </li>
         <li
