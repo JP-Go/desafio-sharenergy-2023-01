@@ -7,6 +7,7 @@ import User, { UserProps } from '../components/User';
 import PageCounter from '../components/PageCounter';
 import ResultsPerPageControl from '../components/ResultsPerPageControl';
 import AuthedPage from './authed-page';
+import LoadingUser from '../components/LoadingUser';
 
 export default function Home() {
   const [page, setPage] = useState(1);
@@ -77,9 +78,7 @@ export default function Home() {
 
         <div className="mx-auto flex flex-col gap-4 mt-4 mb-8">
           {isLoading ? (
-            <p className="text-center text-2xl font-bold w-full bg-white h-12">
-              Loading...
-            </p>
+            <LoadingUser />
           ) : (
             filteredUsers.map((user) => <User key={user.username} {...user} />)
           )}
