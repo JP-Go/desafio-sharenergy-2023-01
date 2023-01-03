@@ -38,11 +38,12 @@ export default function Home() {
   }
 
   function filterUsers(users: UserProps[], query: string) {
+    const regex = new RegExp(query, 'i');
     return users.filter(
       ({ fullName, email, username }) =>
-        fullName.toLowerCase().match(query) ||
-        email.includes(query) ||
-        username.includes(query)
+        fullName.toLowerCase().match(regex) ||
+        email.match(regex) ||
+        username.match(regex)
     );
   }
 
