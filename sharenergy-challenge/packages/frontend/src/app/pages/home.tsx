@@ -1,17 +1,14 @@
-import Header from '../components/Header';
-import User, { UserProps } from '../components/User';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../lib/authContext';
-import PageCounter from '../components/PageCounter';
 import { useQuery } from 'react-query';
 import { fetchUsers } from '../services/randomUserApi';
+
+import Header from '../components/Header';
+import User, { UserProps } from '../components/User';
+import PageCounter from '../components/PageCounter';
 import ResultsPerPageControl from '../components/ResultsPerPageControl';
-import AuthedPage from './authedPage';
+import AuthedPage from './authed-page';
 
 export default function Home() {
-  // const { authState } = useAuth();
-  // const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
   const [query, setQuery] = useState('');
@@ -20,10 +17,6 @@ export default function Home() {
     ['get-users', page, resultsPerPage],
     () => fetchUsers(page, resultsPerPage)
   );
-
-  // useEffect(() => {
-  //   if (!authState.loggedIn) navigate('/', { replace: true });
-  // }, [authState.loggedIn]);
 
   useEffect(() => {
     setUsers(data ?? []);
