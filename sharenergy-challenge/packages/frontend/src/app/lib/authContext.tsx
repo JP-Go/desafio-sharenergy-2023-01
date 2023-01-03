@@ -31,15 +31,7 @@ function reducer(state: AuthState, action: AuthActions) {
   }
 }
 
-const dummyContext: AuthContextInterface = {
-  login: () => {},
-  logout: () => {},
-  authState: {
-    loggedIn: true,
-  },
-};
-
-export const AuthContext = createContext<AuthContextInterface>(dummyContext);
+export const AuthContext = createContext<AuthContextInterface | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [authState, dispatch] = useReducer(reducer, { loggedIn: false });
