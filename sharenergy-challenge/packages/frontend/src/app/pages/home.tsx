@@ -13,7 +13,8 @@ export default function Home() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
-  const [users, setUsers] = useState<UserProps[]>();
+  const [query, setQuery] = useState('');
+  const [users, setUsers] = useState<UserProps[]>([]);
   const { data, isLoading } = useQuery(
     ['get-users', page, resultsPerPage],
     () => fetchUsers(page, resultsPerPage)
@@ -24,21 +25,46 @@ export default function Home() {
   }, [authState.loggedIn]);
 
   useEffect(() => {
-    setUsers(data);
+    setUsers(data ?? []);
   }, [data]);
 
   function prevPage() {
     if (page !== 1) setPage((v) => v - 1);
+    setQuery('');
   }
   function nextPage() {
     setPage((v) => v + 1);
+    setQuery('');
   }
+
+  function filterUsers(users: UserProps[], query: string) {
+    return users.filter(
+      ({ fullName, email, username }) =>
+        fullName.toLowerCase().match(query) ||
+        email.includes(query) ||
+        username.includes(query)
+    );
+  }
+
+  const filteredUsers: UserProps[] = filterUsers(users, query);
 
   return (
     <>
       <Header />
       <main className="w-4/5 mx-auto mt-8">
         <h1 className="font-bold text-2xl text-center w-full mb-4">Usuários</h1>
+
+        <div className="w-full mb-4 flex items-center justify-center gap-4">
+          <span>Busca: </span>
+          <input
+            className="w-3/5"
+            type="text"
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
+            value={query}
+          />
+        </div>
         <div className="w-full flex items-end">
           <PageCounter
             page={page}
@@ -57,8 +83,7 @@ export default function Home() {
           {isLoading ? (
             <p className="text-center text-2xl font-bold">Loading...</p>
           ) : (
-            users &&
-            users!.map((user) => <User key={user.username} {...user} />)
+            filteredUsers.map((user) => <User key={user.username} {...user} />)
           )}
         </div>
 
