@@ -5,6 +5,8 @@ import { AuthProvider } from './lib/authContext';
 import Login from './pages/login';
 
 const Home = lazy(() => import('./pages/home'));
+const HttpCat = lazy(() => import('./pages/http-cat'));
+
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -14,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/http-cat" element={<HttpCat />} />
         </Routes>
       </QueryClientProvider>
     </AuthProvider>
