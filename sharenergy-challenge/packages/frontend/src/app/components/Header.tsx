@@ -8,22 +8,24 @@ export default function Header() {
   return (
     <nav className="h-12 bg-white w-full">
       <ul className="h-full flex justify-end font-bold divide-x">
-        <li
+        <Link
           className={`${
             pathname === '/home' ? 'active-header-item' : 'inactive-header-item'
           }`}
+          to={'/home'}
         >
-          <Link to={'/home'}>User Listing</Link>
-        </li>
-        <li
+          User Listing
+        </Link>
+        <Link
           className={`${
             pathname === '/http-cat'
               ? 'active-header-item'
               : 'inactive-header-item'
           }`}
+          to={'/http-cat'}
         >
-          <Link to={'/http-cat'}>HTTP Cat </Link>
-        </li>
+          HTTP Cat{' '}
+        </Link>
         <li
           className={`${
             pathname === '/dog' ? 'active-header-item' : 'inactive-header-item'
