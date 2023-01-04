@@ -51,7 +51,6 @@ const Login = () => {
             ref={passwordRef}
           />
           <div className="flex gap-2 items-center">
-            <input name="remeber-me" type="checkbox" ref={rememberRef} />
             <input name="remember-me" type="checkbox" ref={rememberRef} />
             <label htmlFor="remember-me">Lembre de mim </label>
           </div>
