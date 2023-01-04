@@ -1,7 +1,30 @@
+import { useQuery } from 'react-query';
 import Header from '../components/Header';
 import Spinner from '../components/Spinner';
+import { fetchDog } from '../services/randomDog';
 import AuthedPage from './authed-page';
+
 export default function RandomDog() {
+  const { data, refetch, isLoading, isRefetching } = useQuery(
+    'random-dog',
+    () => fetchDog()
+  );
+
+  function decideContentTypeFromUrl(
+    dataUrl: string,
+    imgTypes: string[] = ['jpg', 'jpeg', 'png', 'gif', 'svg']
+  ): 'image' | 'video' {
+    const extension = dataUrl?.split('.').at(-1);
+    console.log(extension);
+    return imgTypes.some((item) => item === extension?.toLowerCase())
+      ? 'image'
+      : 'video';
+  }
+
+  const contentType = decideContentTypeFromUrl(data ? data : '.img');
+
+  console.log(contentType);
+
   return (
     <AuthedPage>
       <Header path="/random-dog" />
@@ -10,6 +33,7 @@ export default function RandomDog() {
         <h2 className="text-center font-semibold text-xl">
           Clique no botão abaixo para receber uma foto de um dog
         </h2>
+
         <div className="mx-auto w-fit mt-4">
           <button
             className="h-fit mx-auto rounded-lg px-4 py-2 bg-indigo-500 hover:bg-indigo-600 font-semibold text-white"
@@ -17,6 +41,22 @@ export default function RandomDog() {
           >
             Quero um Dog!
           </button>
+        </div>
+        <div className="mx-auto w-3/4 h-full mt-8 rounded-lg">
+          {isLoading || isRefetching ? (
+            <Spinner />
+          ) : contentType === 'image' ? (
+            <img className="w-full h-full" src={data} alt={'Random Dog'} />
+          ) : (
+            <video
+              className="w-full h-full"
+              width={400}
+              height={400}
+              autoPlay
+              src={data}
+              controls
+            />
+          )}
         </div>
       </main>
     </AuthedPage>
