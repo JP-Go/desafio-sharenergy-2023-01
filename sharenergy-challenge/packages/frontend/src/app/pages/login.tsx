@@ -20,6 +20,9 @@ const Login = () => {
     const username = usernameRef.current!.value;
     const password = passwordRef.current!.value;
     login(username, password);
+    if (rememberRef?.current?.checked) {
+      localStorage.setItem('app-remember-login', 'true');
+    }
   };
 
   return (

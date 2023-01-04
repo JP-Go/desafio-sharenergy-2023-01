@@ -21,8 +21,9 @@ function reducer(state: AuthState, action: AuthActions) {
       }
       //TODO: Remove dummy credentials
       const { password, username } = args;
-      if (username == 'test' && password == 'test')
+      if (username == 'test' && password == 'test') {
         return { ...state, loggedIn: true };
+      }
       return { ...state, loggedIn: false };
     case 'logout':
       return { ...state, loggedIn: false };
@@ -34,12 +35,29 @@ function reducer(state: AuthState, action: AuthActions) {
 export const AuthContext = createContext<AuthContextInterface | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authState, dispatch] = useReducer(reducer, { loggedIn: false });
+  function checkBrowserStorage() {
+    const localStorageCheck =
+      localStorage.getItem('app-remember-login') !== null;
+    const sessionStorageCheck = sessionStorage.getItem('app-loggedin') !== null;
+
+    if (localStorageCheck) {
+      return true;
+    }
+    return sessionStorageCheck;
+  }
+
+  const [authState, dispatch] = useReducer(reducer, {
+    loggedIn: checkBrowserStorage(),
+  });
+
   function login(username: string, password: string) {
     dispatch({ kind: 'login', args: { username, password } });
+    sessionStorage.setItem('app-loggedin', 'true');
   }
   function logout() {
     dispatch({ kind: 'logout' });
+    sessionStorage.removeItem('app-loggedin');
+    localStorage.removeItem('app-remember-login');
   }
   return (
     <AuthContext.Provider value={{ authState, login, logout }}>
@@ -48,4 +66,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext) as AuthContextInterface;
