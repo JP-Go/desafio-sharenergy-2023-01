@@ -33,9 +33,11 @@ const Login = () => {
         </h1>
         <form
           onSubmit={submitHandle}
-          className="flex flex-col items-start justify-center gap-4 h-3/5 w-full font-semibold"
+          className="flex flex-col items-start justify-center gap-4 h-3/5 w-full"
         >
-          <label htmlFor="username">Usuário</label>
+          <label className="font-semibold" htmlFor="username">
+            Usuário
+          </label>
           <input
             autoFocus
             className="border w-full border-indigo-400 focus:border-indigo-400 rounded p-2"
@@ -43,7 +45,9 @@ const Login = () => {
             name="username"
             ref={usernameRef}
           />
-          <label htmlFor="password">Senha</label>
+          <label className="font-semibold" htmlFor="password">
+            Senha
+          </label>
           <input
             className="border w-full border-indigo-400 focus:border-indigo-400 rounded p-2"
             type="password"
