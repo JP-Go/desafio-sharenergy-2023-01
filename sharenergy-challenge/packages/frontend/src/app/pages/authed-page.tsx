@@ -11,7 +11,6 @@ export default function AuthedPage({ children }: AuthedPageProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(authState.loggedIn);
     const notLoggedIn = !authState.loggedIn;
     if (notLoggedIn) navigate('/', { replace: true });
   }, [authState.loggedIn]);
