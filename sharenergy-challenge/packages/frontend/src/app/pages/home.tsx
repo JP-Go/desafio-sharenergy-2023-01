@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <AuthedPage>
-      <Header />
+      <Header path="/home" />
       <main className="w-4/5 mx-auto mt-8">
         <h1 className="font-bold text-2xl text-center w-full mb-4">Usuários</h1>
 
