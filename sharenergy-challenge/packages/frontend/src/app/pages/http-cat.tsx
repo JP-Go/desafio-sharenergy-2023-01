@@ -9,7 +9,7 @@ export default function HttpCat() {
   return (
     <AuthedPage>
       <Header path="/http-cat" />
-      <div className="w-4/5 bg-white mx-auto flex flex-col items-center justify-center my-8 py-8 px-2 rounded-lg">
+      <main className="w-4/5 bg-white mx-auto flex flex-col items-center justify-center my-8 py-8 px-2 rounded-lg">
         <h1 className="font-bold text-1xl">
           HTTP Cats: Digite um código HTTP e receba um meme de gato
         </h1>
@@ -33,7 +33,7 @@ export default function HttpCat() {
           src={`https://http.cat/${code}`}
           alt={`Cat code: ${code}`}
         />
-      </div>
+      </main>
     </AuthedPage>
   );
 }
