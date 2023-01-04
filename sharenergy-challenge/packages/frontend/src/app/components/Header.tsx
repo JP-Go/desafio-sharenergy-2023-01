@@ -24,7 +24,7 @@ export default function Header() {
           }`}
           to={'/http-cat'}
         >
-          HTTP Cat{' '}
+          HTTP Cat
         </Link>
         <li
           className={`${
