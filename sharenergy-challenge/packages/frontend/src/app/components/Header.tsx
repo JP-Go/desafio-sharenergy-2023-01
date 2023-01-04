@@ -1,16 +1,19 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../lib/authContext';
 
-export default function Header() {
+interface HeaderProps {
+  path: string;
+}
+
+export default function Header({ path }: HeaderProps) {
   const { logout } = useAuth();
-  const { pathname } = useLocation();
 
   return (
     <nav className="h-12 bg-white w-full">
       <ul className="h-full flex justify-end font-bold divide-x">
         <Link
           className={`${
-            pathname === '/home' ? 'active-header-item' : 'inactive-header-item'
+            path === '/home' ? 'active-header-item' : 'inactive-header-item'
           }`}
           to={'/home'}
         >
@@ -18,26 +21,25 @@ export default function Header() {
         </Link>
         <Link
           className={`${
-            pathname === '/http-cat'
-              ? 'active-header-item'
-              : 'inactive-header-item'
+            path === '/http-cat' ? 'active-header-item' : 'inactive-header-item'
           }`}
           to={'/http-cat'}
         >
           HTTP Cat
         </Link>
-        <li
+        <Link
+          to={'/random-dog'}
           className={`${
-            pathname === '/dog' ? 'active-header-item' : 'inactive-header-item'
+            path === '/random-dog'
+              ? 'active-header-item'
+              : 'inactive-header-item'
           }`}
         >
           Random Dog
-        </li>
+        </Link>
         <li
           className={`${
-            pathname === '/clients'
-              ? 'active-header-item'
-              : 'inactive-header-item'
+            path === '/clients' ? 'active-header-item' : 'inactive-header-item'
           }`}
         >
           Clients
