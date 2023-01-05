@@ -1,5 +1,4 @@
 import { HttpService } from '@nestjs/axios';
-import { of } from 'rxjs';
 import { HttpCatsRepository } from './http-cats.repository';
 import { InMemoryHttpCatsHtttpService } from '../../test/http-cats/in-memory-http-cats-http-service';
 
