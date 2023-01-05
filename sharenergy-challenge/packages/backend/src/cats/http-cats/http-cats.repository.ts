@@ -8,7 +8,6 @@ import { CatResource } from '../entities/cat-resouce';
 @Injectable()
 export class HttpCatsRepository implements CatsRepository {
   private HTTP_CATS_URL = 'https://http.cat';
-  private logger = new Logger(CatsRepository.name);
 
   constructor(private readonly httpService: HttpService) { }
 
@@ -17,7 +16,6 @@ export class HttpCatsRepository implements CatsRepository {
     const responseStatus = await firstValueFrom(
       this.httpService.get(fullUrl).pipe(
         map((response) => {
-          if (response.status === 200) this.logger.log('Succesfully got 🐈');
           return response.status;
         }),
         catchError((err: AxiosError) => {
