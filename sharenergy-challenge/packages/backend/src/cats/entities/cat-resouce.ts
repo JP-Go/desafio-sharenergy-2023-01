@@ -1,4 +1,4 @@
-type CatResourceStatus = 'ok' | 'error';
+export type CatResourceStatus = 'ok' | 'error';
 
 export class CatResource {
   private _url: URL | null;
