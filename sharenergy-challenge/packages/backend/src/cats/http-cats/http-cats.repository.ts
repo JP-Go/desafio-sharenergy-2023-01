@@ -1,10 +1,11 @@
 import { HttpService } from '@nestjs/axios';
-import { Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
 import { CatsRepository } from '../contracts/cats.repository';
 import { CatResource } from '../entities/cat-resouce';
 
+@Injectable()
 export class HttpCatsRepository implements CatsRepository {
   private HTTP_CATS_URL = 'https://http.cat';
 
