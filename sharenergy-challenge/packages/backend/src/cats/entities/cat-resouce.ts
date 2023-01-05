@@ -1,8 +1,8 @@
 type CatResourceStatus = 'ok' | 'error';
 
 export class CatResource {
-  _url: string | null;
-  _status: CatResourceStatus;
+  private _url: string | null;
+  private _status: CatResourceStatus;
 
   static withOkStatus(resourceUrl: string) {
     return new CatResource(resourceUrl);
