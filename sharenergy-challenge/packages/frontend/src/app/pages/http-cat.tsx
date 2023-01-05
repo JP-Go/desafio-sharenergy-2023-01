@@ -1,10 +1,16 @@
 import { useRef, useState } from 'react';
+import { useQuery } from 'react-query';
 import Header from '../components/Header';
+import Spinner from '../components/Spinner';
+import { fetchHttCatLink } from '../services/http-cat';
 import AuthedPage from './authed-page';
 
 export default function HttpCat() {
   const [code, setCode] = useState(200);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { data, status } = useQuery(['get-http-cat', code], () =>
+    fetchHttCatLink(code)
+  );
 
   return (
     <AuthedPage>
@@ -28,11 +34,11 @@ export default function HttpCat() {
             Meow!
           </button>
         </div>
-        <img
-          className="w-3/4 mt-8"
-          src={`https://http.cat/${code}`}
-          alt={`Cat code: ${code}`}
-        />
+        {status === 'loading' ? (
+          <Spinner />
+        ) : (
+          <img className="w-1/2 mt-8" src={data} alt={`Cat code: ${code}`} />
+        )}
       </main>
     </AuthedPage>
   );
