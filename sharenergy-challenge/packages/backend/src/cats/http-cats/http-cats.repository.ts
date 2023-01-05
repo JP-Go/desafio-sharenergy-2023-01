@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom, map, of } from 'rxjs';
 import { CatsRepository } from '../contracts/cats.repository';
