@@ -2,7 +2,7 @@ import { CatResource } from '../entities/cat-resouce';
 import { CatDto } from './cat-dto';
 
 describe('Cat Dto tests', () => {
-  it("should correctly transform a CatResource entity with a 'ok' status to a CatHttpResponse", () => {
+  it("should correctly transform a CatResource entity with a 'ok' status to a CatResouceHttpResponse", () => {
     const result = CatDto.toHttp(
       CatResource.withOkStatus('https://www.google.com/')
     );
@@ -13,7 +13,7 @@ describe('Cat Dto tests', () => {
       })
     );
   });
-  it("should correctly transform a CatResource entity with a 'error' status to a CatHttpResponse", () => {
+  it("should correctly transform a CatResource entity with a 'error' status to a CatResouceHttpResponse", () => {
     const result = CatDto.toHttp(CatResource.withError());
     expect(result).toStrictEqual(
       expect.objectContaining({
