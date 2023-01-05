@@ -1,5 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { CatsService } from '../contracts/cats.service';
+import { CatDto } from '../dtos/cat-dto';
 
 @Controller('cats')
 export class HttpCatsController {
@@ -7,6 +8,7 @@ export class HttpCatsController {
 
   @Get(':code')
   async getCatByCode(@Param('code', ParseIntPipe) code: number) {
-    return await this.httpCatsService.getCatByCode(code);
+    const cat = await this.httpCatsService.getCatByCode(code);
+    return CatDto.toHttp(cat);
   }
 }
