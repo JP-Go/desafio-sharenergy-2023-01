@@ -21,7 +21,7 @@ export class HttpCatsRepository implements CatsRepository {
           return response.status;
         }),
         catchError((err: AxiosError) => {
-          if (err.response.status === 404) return of(404);
+          if (err.response?.status === 404) return of(404);
           else {
             throw 'Uncaught Error';
           }
