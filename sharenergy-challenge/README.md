@@ -21,12 +21,13 @@ Minha solução para o desafio Sharenergy 2023-01
   - React ([https://pt-br.reactjs.org](https://pt-br.reactjs.org))
   - React Query V3 ([https://react-query-v3.tanstack.com](https://react-query-v3.tanstack.com))
   - React Router ([https://www.reactrouter.com](https://www.reactrouter.com))
-  - Axios ([https://www.axios-http.com/ptbr/docs/intro](https://www.axios-http.com/ptbr/docs/intro))
   - Tailwind CSS ([https://www.tailwindcss.com](https://www.tailwindcss.com))
   - Vite ([https://www.vitejs.dev](https://www.vitejs.dev))
 
 - **No backend:**
   - NestJS  ([https://nestjs.com/](https://nestjs.com/))
+  - class-validator ([https://github.com/typestack/class-validator](https://github.com/typestack/class-validator))
+  - class-transformer ([https://github.com/typestack/class-transformer](https://github.com/typestack/class-transformer))
 
 - **Sistema de build:**
   - Nx [https://nx.dev](https://nx.dev)
@@ -36,4 +37,4 @@ Minha solução para o desafio Sharenergy 2023-01
   - Random User API, para gerar dados fictícios de usuários [https://randomuser.me](https://randomuser.me)
   - HTTP Cats API, para gerar foto aleatória de gatos correspondente a códigos HTTP [https://http.cat/](https://http.cat/)
   - Random dog API, para gerar foto aleatória de um cachorro [https://github.com/AdenFlorian/random.dog](https://github.com/AdenFlorian/random.dog)
-
+  - Axios, para requisições http ([https://www.axios-http.com/ptbr/docs/intro](https://www.axios-http.com/ptbr/docs/intro))
