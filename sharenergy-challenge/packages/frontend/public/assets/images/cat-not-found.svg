@@ -1,0 +1,18 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+        <style>
+            @import url("https://fonts.googleapis.com/css?family=Poppins:400;700");
+        </style>
+    </defs>
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="15.68627" rx="15.68627" id="svg_1" cy="24.41453" cx="32.43573" stroke="#000" fill="#fff"/>
+  <ellipse ry="1.96078" rx="1.96078" id="svg_2" cy="20.71083" cx="38.31808" stroke="#000000" fill="#000000"/>
+  <ellipse ry="1.96078" rx="1.96078" id="svg_3" cy="20.71083" cx="25.24619" stroke="#000" fill="#000000"/>
+  <line transform="rotate(-21 32.3396 30.208)" stroke="#000" id="svg_6" y2="30.20798" x2="40.20379" y1="30.20798" x1="24.4755" fill="none"/>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Poppins" font-size="8" stroke-width="0" id="svg_7" y="48.91548" x="23.69571" stroke="#000" fill="#000000">Ops!</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Poppins" font-size="4" id="svg_8" y="61.41282" x="14.90829" stroke-width="0" stroke="#000" fill="#000000">Tente outro verbo</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Poppins" font-size="4" id="svg_9" y="56.91339" x="5.90942" stroke-width="0" stroke="#000" fill="#000000">Esse verbo HTTP não existe.</text>
+ </g>
+</svg>
