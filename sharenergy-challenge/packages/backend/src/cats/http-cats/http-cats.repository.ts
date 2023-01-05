@@ -10,7 +10,7 @@ export class HttpCatsRepository implements CatsRepository {
   private HTTP_CATS_URL = 'https://http.cat';
   private logger = new Logger(CatsRepository.name);
 
-  constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   async getCatByCode(code: number) {
     const fullUrl = `${this.HTTP_CATS_URL}/${code}`;
@@ -31,6 +31,6 @@ export class HttpCatsRepository implements CatsRepository {
 
     return responseStatus === 200
       ? CatResource.withOkStatus(fullUrl)
-      : CatResource.withError(null);
+      : CatResource.withError();
   }
 }
