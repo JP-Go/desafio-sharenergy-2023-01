@@ -7,16 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client{
-  id       String  @id @default(uuid())
+model Client{ 
+  // anotations nedded to use mongo
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   name     String
   email    String  @unique
   phone    String
-  address  String
+  address  Address
   cpf      String  @unique
 }
 
-model Address{
+type Address{
   city     String
   cep      String
   state    String
