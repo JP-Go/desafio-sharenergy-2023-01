@@ -52,7 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function login(username: string, password: string) {
     dispatch({ kind: 'login', args: { username, password } });
-    sessionStorage.setItem('app-loggedin', 'true');
+    if (authState.loggedIn) sessionStorage.setItem('app-loggedin', 'true');
   }
   function logout() {
     dispatch({ kind: 'logout' });
