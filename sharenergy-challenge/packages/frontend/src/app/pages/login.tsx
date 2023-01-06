@@ -1,18 +1,21 @@
-import { FormEvent, useEffect, useRef } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SnackBar from '../components/SnackBar';
 import { useAuth } from '../lib/authContext';
 
 const Login = () => {
   const { authState, login } = useAuth();
-
-  useEffect(() => {
-    if (authState.loggedIn) navigate('/home', { replace: true });
-  }, [authState.loggedIn]);
+  const [message, setMessage] = useState('');
 
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const rememberRef = useRef<HTMLInputElement | null>(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authState.loggedIn) navigate('/home', { replace: true });
+  }, [authState.loggedIn]);
 
   const submitHandle = (e: FormEvent) => {
     e.preventDefault();
@@ -20,8 +23,13 @@ const Login = () => {
     const username = usernameRef.current!.value;
     const password = passwordRef.current!.value;
     login(username, password);
+
     if (rememberRef?.current?.checked) {
       localStorage.setItem('app-remember-login', 'true');
+    }
+
+    if (!authState.loggedIn) {
+      setMessage('Credenciais incorretas. Tente novamente.');
     }
   };
 
@@ -69,6 +77,15 @@ const Login = () => {
           </button>
         </form>
       </div>
+      <SnackBar
+        message={message}
+        durationInMs={3000}
+        onClose={() => {
+          setMessage('');
+        }}
+        variant="error"
+        shouldOpen={message.length > 0 && !authState.loggedIn}
+      />
     </div>
   );
 };
