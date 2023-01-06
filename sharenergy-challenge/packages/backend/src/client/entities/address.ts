@@ -1,5 +1,3 @@
-import BaseEntity from './base';
-
 export interface AddressProps {
   city: string;
   cep: string;
@@ -8,9 +6,15 @@ export interface AddressProps {
   number: string;
 }
 
-export class Address extends BaseEntity<AddressProps> {
-  constructor(props: AddressProps, id?: string) {
-    super(props, id);
+export class Address {
+  private _props: AddressProps;
+
+  constructor(props: AddressProps) {
+    this._props = props;
+  }
+
+  public get props() {
+    return this._props;
   }
 
   public get city() {
