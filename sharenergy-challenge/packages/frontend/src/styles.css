@@ -24,6 +24,6 @@
   }
 
   .snackbar-base {
-    @apply fixed left-2 bottom-4 rounded-lg w-2/5 p-4 text-white bg-gray-700/70 transition-transform ease-in-out duration-300 font-medium;
+    @apply fixed left-2 bottom-4 rounded-lg w-2/5 p-4 text-white bg-gray-700/70 transition ease-in-out duration-300 font-medium;
   }
 }
