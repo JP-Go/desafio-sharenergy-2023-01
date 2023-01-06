@@ -3,6 +3,7 @@ version: '3'
 services:
   database:
     # Usando versão 4 já que a versão 5 não suporta CPUs sem AVX
+    container_name: "sharenergy-challenge-database"
     image: mongo:4.0  
     restart: 'always'
     environment:
