@@ -1,26 +1,26 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
-model Client{ 
-  // anotations nedded to use mongo
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String  @unique
-  phone    String
-  address  Address
-  cpf      String  @unique
+generator client {
+  provider = "prisma-client-js"
 }
 
-type Address{
-  city     String
-  cep      String
-  state    String
-  street   String
-  number   String
+model Client {
+  // anotations nedded to use mongo
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  email   String  @unique
+  phone   String
+  address Address
+  cpf     String  @unique
+}
+
+type Address {
+  city   String
+  cep    String
+  state  String
+  street String
+  number String
 }
