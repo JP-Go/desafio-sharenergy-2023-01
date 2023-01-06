@@ -14,22 +14,22 @@ export class Client extends BaseEntity<ClientProps> {
     super(props, id);
   }
 
-  public get id() {
+  public get id(): string | null {
     return this.id;
   }
-  public get name() {
+  public get name(): string {
     return this.props.name;
   }
-  public get email() {
+  public get email(): string {
     return this.props.email;
   }
-  public get phone() {
+  public get phone(): string {
     return this.props.phone;
   }
-  public get address() {
+  public get address(): Address {
     return this.props.address;
   }
-  public get cpf() {
+  public get cpf(): string {
     return this.props.cpf;
   }
 }
