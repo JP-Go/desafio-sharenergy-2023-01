@@ -14,4 +14,8 @@ export default class BaseEntity<T> {
   public get props() {
     return this._props;
   }
+
+  public set props(newProps: T) {
+    this._props = newProps;
+  }
 }
