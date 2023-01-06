@@ -4,10 +4,12 @@ services:
   database:
     # Usando versão 4 já que a versão 5 não suporta CPUs sem AVX
     container_name: "sharenergy-challenge-database"
-    image: mongo:4.0  
+    image: mongo:4.4  
     restart: 'always'
     environment:
         MONGO_INITDB_ROOT_USERNAME: jp
         MONGO_INITDB_ROOT_PASSWORD: mongo
     ports:
       - '27020:27017'
+    volumes:
+      - ./data:/data/db
