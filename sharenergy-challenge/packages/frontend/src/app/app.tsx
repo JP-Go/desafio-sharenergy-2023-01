@@ -9,7 +9,14 @@ const Home = lazy(() => import('./pages/home'));
 const HttpCat = lazy(() => import('./pages/http-cat'));
 const RandomDog = lazy(() => import('./pages/random-dog'));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  },
+});
 
 export default function App() {
   return (
