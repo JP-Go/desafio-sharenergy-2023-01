@@ -42,19 +42,25 @@ export default function RandomDog() {
             Quero um Dog!
           </button>
         </div>
-        <div className="mx-auto w-3/4 h-full mt-8 rounded-lg">
+        <div className="mx-auto w-3/4 h-3/4 mt-8 rounded-lg">
           {isLoading || isRefetching ? (
             <Spinner />
           ) : contentType === 'image' ? (
-            <img className="w-full h-full" src={data} alt={'Random Dog'} />
+            <img
+              className="w-80 h-80 mx-auto object-scale-down"
+              width={400}
+              height={300}
+              src={data}
+              alt={'Random Dog'}
+            />
           ) : (
             <video
-              className="w-full h-full"
+              className="w-80 h-80 mx-auto"
               width={400}
-              height={400}
-              autoPlay
+              height={300}
               src={data}
               controls
+              autoPlay
             />
           )}
         </div>
