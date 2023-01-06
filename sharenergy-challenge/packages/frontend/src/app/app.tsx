@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import { AuthProvider } from './lib/authContext';
+import { AuthProvider } from './context/authContext';
 import Login from './pages/login';
 
 const Home = lazy(() => import('./pages/home'));

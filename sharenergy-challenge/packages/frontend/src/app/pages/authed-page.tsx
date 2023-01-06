@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../lib/authContext';
+import { useAuth } from '../context/authContext';
 
 interface AuthedPageProps {
   children: ReactNode;
