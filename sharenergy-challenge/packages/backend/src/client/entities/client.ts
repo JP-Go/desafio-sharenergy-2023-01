@@ -18,18 +18,18 @@ export class Client extends BaseEntity<ClientProps> {
     return this.id;
   }
   public get name(): string {
-    return this.props.name;
+    return this._props.name;
   }
   public get email(): string {
-    return this.props.email;
+    return this._props.email;
   }
   public get phone(): string {
-    return this.props.phone;
+    return this._props.phone;
   }
   public get address(): Address {
-    return this.props.address;
+    return this._props.address;
   }
   public get cpf(): string {
-    return this.props.cpf;
+    return this._props.cpf;
   }
 }
