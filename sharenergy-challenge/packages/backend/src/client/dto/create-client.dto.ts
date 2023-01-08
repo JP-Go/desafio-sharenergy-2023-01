@@ -1,12 +1,40 @@
+import { Type } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
+  IsNotEmptyObject,
   IsObject,
   IsString,
   Length,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
 import { Address } from '../entities/address';
+
+class AddressDto {
+  @IsNotEmpty()
+  @IsString()
+  @Length(8, 8, {
+    message: 'cep must have 8 characters',
+  })
+  cep: string;
+
+  @IsNotEmpty()
+  @IsString()
+  state: string;
+
+  @IsNotEmpty()
+  @IsString()
+  city: string;
+
+  @IsNotEmpty()
+  @IsString()
+  street: string;
+
+  @IsNotEmpty()
+  @IsString()
+  number: string;
+}
 
 export class CreateClientDto {
   @IsString()
@@ -28,6 +56,8 @@ export class CreateClientDto {
   phone: string;
 
   @IsObject()
-  @IsNotEmpty()
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(() => AddressDto)
   address: Address;
 }
