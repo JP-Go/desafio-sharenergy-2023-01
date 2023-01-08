@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
-import { Address } from '../client/entities/address';
-import { Client } from '../client/entities/client';
+import { MongooseModule } from '@nestjs/mongoose';
 import { ClientRepository } from '../client/client.repository';
-import { PrismaClientRepository } from './prisma/prisma-client-repository';
-import { PrismaService } from './prisma/prisma-service';
+import { MongooseClientRepository } from './mongoose/mongoose-client.repository';
+import { Client, ClientSchema } from './mongoose/schemas/client.schema';
 
 @Module({
-  imports: [Client, Address],
-  providers: [
-    PrismaService,
-    { provide: ClientRepository, useClass: PrismaClientRepository },
+  imports: [
+    MongooseModule.forFeature([{ name: Client.name, schema: ClientSchema }]),
   ],
+  providers: [
+    {
+      provide: ClientRepository,
+      useClass: MongooseClientRepository,
+    },
+  ],
+  exports: [ClientRepository],
 })
 export class DatabaseModule {}
