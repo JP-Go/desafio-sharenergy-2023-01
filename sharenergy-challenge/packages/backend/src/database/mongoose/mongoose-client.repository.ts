@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import { Client } from '../../client/entities/client';
 import { ClientRepository } from '../../client/client.repository';
 import { ClientDocument, Client as ClientModel } from './schemas/client.schema';
-import { ClientMapper } from './mappers/client-mapper';
+import { ClientMapper } from './mappers/mongoose-client-mapper';
 
 @Injectable()
 export class MongooseClientRepository implements ClientRepository {
