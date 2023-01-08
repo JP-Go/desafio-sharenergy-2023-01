@@ -6,22 +6,49 @@ import {
 } from 'packages/backend/src/client/entities/address';
 
 export class ClientMapper {
-  static toDomain(clientModel: ClientDocument): Client {
+  static toDomain({
+    address,
+    name,
+    phone,
+    email,
+    cpf,
+    id,
+  }: ClientDocument): Client {
     const addressProps: AddressProps = {
-      cep: clientModel.address.cep,
-      city: clientModel.address.city,
-      state: clientModel.address.state,
-      number: clientModel.address.number,
-      street: clientModel.address.street,
+      cep: address.cep,
+      city: address.city,
+      state: address.state,
+      number: address.number,
+      street: address.street,
     };
+
     const props: ClientProps = {
-      name: clientModel.name,
-      phone: clientModel.phone,
-      email: clientModel.email,
-      cpf: clientModel.cpf,
+      name: name,
+      phone: phone,
+      email: email,
+      cpf: cpf,
       address: new Address(addressProps),
     };
-    const client = new Client(props, clientModel.id);
+    const client = new Client(props, id);
     return client;
+  }
+
+  static toPersistence(client: Client) {
+    const address = client.address;
+    const raw = {
+      address: {
+        city: address.city,
+        cep: address.cep,
+        state: address.state,
+        number: address.number,
+        street: address.street,
+      },
+      phone: client.phone,
+      name: client.name,
+      email: client.email,
+      cpf: client.cpf,
+    };
+
+    return raw;
   }
 }
