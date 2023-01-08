@@ -24,7 +24,7 @@ export class ClientController {
   }
 
   @Get(':id')
-  async findOne(@Param('id', ParseUUIDPipe) id: string) {
+  async findOne(@Param('id') id: string) {
     const client = await this.clientService.findOne(id);
     return HttpClientMapper.toHttp(client);
   }
@@ -36,8 +36,12 @@ export class ClientController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientService.update(+id, updateClientDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateClientDto: UpdateClientDto
+  ) {
+    const client = await this.clientService.update(id, updateClientDto);
+    return HttpClientMapper.toHttp(client);
   }
 
   @Delete(':id')
