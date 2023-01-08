@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    container_name: se_challenge_db
+    # Usando 4.4 já que 5.0 não tem suporte a cpus sem AVX
+    image: mongo:4.4
+    env_file:
+        - ./mongo-env
+    # remap de portas para evitar conflito com proxy do docker
+    ports:
+      - 27020:27017
+  mongo-express:
+    container_name: admin_se_challenge
+    image: mongo-express:latest
+    env_file:
+      - ./mongo-admin-env
+    ports:
+      - 8080:8081
+    depends_on:
+      - db
+
