@@ -2,45 +2,32 @@ import { Injectable } from '@nestjs/common';
 import { ClientRepository } from './client.repository';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
-import { Address, AddressProps } from './entities/address';
-import { Client, ClientProps } from './entities/client';
+import { HttpClientMapper } from './mappers/http-client-mapper';
 
 @Injectable()
 export class ClientService {
-  constructor(private readonly repository: ClientRepository) {}
+  constructor(private readonly clientRepository: ClientRepository) {}
 
   async findAll() {
-    return await this.repository.findMany();
+    return await this.clientRepository.findMany();
   }
 
   async findOne(id: string) {
-    const client = await this.repository.findById(id);
+    const client = await this.clientRepository.findById(id);
     return client;
   }
 
   async create(createClientDto: CreateClientDto) {
-    const addressProps: AddressProps = {
-      cep: createClientDto.address.cep,
-      city: createClientDto.address.city,
-      number: createClientDto.address.number,
-      state: createClientDto.address.state,
-      street: createClientDto.address.street,
-    };
-    const props: ClientProps = {
-      cpf: createClientDto.cpf,
-      name: createClientDto.name,
-      email: createClientDto.email,
-      phone: createClientDto.phone,
-      address: new Address(addressProps),
-    };
-    return await this.repository.save(new Client(props));
+    const client = HttpClientMapper.toDomain(createClientDto);
+    return await this.clientRepository.save(client);
   }
 
-  update(id: number, updateClientDto: UpdateClientDto) {
-    return `This action updates a #${id} client`;
+  async update(id: string, updateClientDto: UpdateClientDto) {
+    const data = JSON.parse(JSON.stringify(updateClientDto));
+    return await this.clientRepository.update(data, id);
   }
 
   async remove(id: string) {
-    await this.repository.delete(id);
+    await this.clientRepository.delete(id);
   }
 }
