@@ -15,7 +15,7 @@ export class Client extends BaseEntity<ClientProps> {
   }
 
   public get id(): string | null {
-    return this.id;
+    return this._id;
   }
   public get name(): string {
     return this._props.name;

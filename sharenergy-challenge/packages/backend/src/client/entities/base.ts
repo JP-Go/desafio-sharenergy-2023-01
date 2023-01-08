@@ -1,5 +1,5 @@
 export default abstract class BaseEntity<T> {
-  private _id: string | null;
+  protected _id: string | null;
   protected _props: T;
 
   constructor(props: T, id?: string) {
