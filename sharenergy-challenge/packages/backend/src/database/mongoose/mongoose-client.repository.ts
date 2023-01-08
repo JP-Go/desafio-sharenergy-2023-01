@@ -42,19 +42,9 @@ export class MongooseClientRepository implements ClientRepository {
     if (!!notUniqueEmail) throw new EmailTaken();
     if (!!notUniqueCpf) throw new CpfTaken();
 
-    const newClient = await this.clientModel.create({
-      name: client.name,
-      cpf: client.cpf,
-      phone: client.phone,
-      email: client.email,
-      address: {
-        cep: client.address.cep,
-        city: client.address.city,
-        state: client.address.state,
-        number: client.address.number,
-        street: client.address.street,
-      },
-    });
+    const newClient = await this.clientModel.create(
+      ClientMapper.toPersistence(client)
+    );
     return ClientMapper.toDomain(newClient);
   }
 
