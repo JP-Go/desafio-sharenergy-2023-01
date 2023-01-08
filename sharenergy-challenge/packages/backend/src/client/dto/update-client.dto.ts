@@ -1,27 +1,57 @@
 import {
   IsEmail,
   IsObject,
+  IsOptional,
   IsString,
   Length,
   MinLength,
 } from 'class-validator';
-import { Address } from '../entities/address';
+
+class AddressDto {
+  @IsString()
+  @IsOptional()
+  @Length(8, 8, {
+    message: 'cep must have 8 characters',
+  })
+  cep?: string;
+
+  @IsString()
+  @IsOptional()
+  state?: string;
+
+  @IsString()
+  @IsOptional()
+  city?: string;
+
+  @IsString()
+  @IsOptional()
+  street?: string;
+
+  @IsString()
+  @IsOptional()
+  number?: string;
+}
 
 export class UpdateClientDto {
   @IsString()
-  name: string;
+  @IsOptional()
+  name?: string;
 
   @IsEmail()
-  email: string;
+  @IsOptional()
+  email?: string;
 
   @IsString()
   @Length(11)
-  cpf: string;
+  @IsOptional()
+  cpf?: string;
 
   @IsString()
   @MinLength(11)
-  phone: string;
+  @IsOptional()
+  phone?: string;
 
   @IsObject()
-  address: Address;
+  @IsOptional()
+  address?: AddressDto;
 }
