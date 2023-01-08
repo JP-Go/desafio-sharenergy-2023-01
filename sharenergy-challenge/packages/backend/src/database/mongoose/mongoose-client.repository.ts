@@ -2,13 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Client } from '../../client/entities/client';
-import { ClientNotFound } from '../../client/errors/client-not-found';
 import { CpfTaken } from '../../client/errors/cpf-taken';
 import { EmailTaken } from '../../client/errors/email-taken';
+import { ClientMapper } from './mappers/mongoose-client-mapper';
+import { ClientNotFound } from '../../client/errors/client-not-found';
 import { ClientRepository } from '../../client/client.repository';
 import { ClientDocument, Client as ClientModel } from './schemas/client.schema';
-import { ClientMapper } from './mappers/mongoose-client-mapper';
+import { Client } from '../../client/entities/client';
+import { AddressProps } from '../../client/entities/address';
+import { Replace } from '../../helpers/replace';
 
 @Injectable()
 export class MongooseClientRepository implements ClientRepository {
@@ -56,13 +58,34 @@ export class MongooseClientRepository implements ClientRepository {
     return ClientMapper.toDomain(newClient);
   }
 
-  update: (client: Partial<Client>, id: string) => Promise<Client>;
+  async update(
+    data: Replace<Partial<Client>, { address: Partial<AddressProps> }>,
+    id: string
+  ) {
+    const { city, cep, state, street, number } = (await this.findById(id))
+      .address;
+    const addressData = {
+      city: data.address.city ?? city,
+      cep: data.address.cep ?? cep,
+      state: data.address.state ?? state,
+      street: data.address.street ?? street,
+      number: data.address.number ?? number,
+    };
+    const existingClient = await this.clientModel
+      .updateOne({ _id: id }, { ...data, address: addressData })
+      .exec();
 
-  async delete(id: string) {
-    const exists = await this.clientModel.exists({ id }).exec();
-    if (!exists) {
+    if (!existingClient.acknowledged) {
       throw new ClientNotFound();
     }
-    await this.clientModel.deleteOne({ _id: id }).exec();
+
+    return this.findById(id);
+  }
+
+  async delete(id: string) {
+    const deleted = await this.clientModel.findByIdAndDelete(id).exec();
+    if (!deleted) {
+      throw new ClientNotFound();
+    }
   }
 }
