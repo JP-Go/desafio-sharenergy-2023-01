@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 
 import { Client } from '../../client/entities/client';
 import { ClientNotFound } from '../../client/errors/client-not-found';
+import { CpfTaken } from '../../client/errors/cpf-taken';
+import { EmailTaken } from '../../client/errors/email-taken';
 import { ClientRepository } from '../../client/client.repository';
 import { ClientDocument, Client as ClientModel } from './schemas/client.schema';
 import { ClientMapper } from './mappers/mongoose-client-mapper';
@@ -27,8 +29,35 @@ export class MongooseClientRepository implements ClientRepository {
     }
     return ClientMapper.toDomain(client);
   }
-  save: (client: Client) => Promise<Client>;
+
+  async save(client: Client) {
+    const notUniqueEmail = await this.clientModel.findOne({
+      email: client.email,
+    });
+    const notUniqueCpf = await this.clientModel.findOne({
+      cpf: client.cpf,
+    });
+    if (!!notUniqueEmail) throw new EmailTaken();
+    if (!!notUniqueCpf) throw new CpfTaken();
+
+    const newClient = await this.clientModel.create({
+      name: client.name,
+      cpf: client.cpf,
+      phone: client.phone,
+      email: client.email,
+      address: {
+        cep: client.address.cep,
+        city: client.address.city,
+        state: client.address.state,
+        number: client.address.number,
+        street: client.address.street,
+      },
+    });
+    return ClientMapper.toDomain(newClient);
+  }
+
   update: (client: Partial<Client>, id: string) => Promise<Client>;
+
   async delete(id: string) {
     const exists = await this.clientModel.exists({ id }).exec();
     if (!exists) {
