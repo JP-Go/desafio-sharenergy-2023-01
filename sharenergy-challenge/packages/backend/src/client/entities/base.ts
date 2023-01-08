@@ -1,4 +1,4 @@
-export default class BaseEntity<T> {
+export default abstract class BaseEntity<T> {
   private _id: string | null;
   protected _props: T;
 
