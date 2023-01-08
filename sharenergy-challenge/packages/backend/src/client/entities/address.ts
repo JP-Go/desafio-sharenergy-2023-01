@@ -13,23 +13,19 @@ export class Address {
     this._props = props;
   }
 
-  public get props() {
-    return this._props;
-  }
-
   public get city() {
-    return this.props.city;
+    return this._props.city;
   }
   public get cep() {
-    return this.props.cep;
+    return this._props.cep;
   }
   public get state() {
-    return this.props.state;
+    return this._props.state;
   }
   public get street() {
-    return this.props.street;
+    return this._props.street;
   }
   public get number() {
-    return this.props.number;
+    return this._props.number;
   }
 }
