@@ -1,4 +1,5 @@
-import { CatResource, CatResourceStatus } from '../entities/cat-resouce';
+import { CatResource } from '../entities/cat-resouce';
+import { CatResourceStatus } from '@sharenergy-challenge/shared-types';
 
 export type CatResourceHttpResponse = {
   url: string | null;

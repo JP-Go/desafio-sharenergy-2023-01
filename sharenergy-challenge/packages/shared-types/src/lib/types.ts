@@ -12,5 +12,7 @@ export interface HttpClientReponse {
   cpf: string;
   email: string;
   phone: string;
-  address: AddressProps; 
+  address: AddressProps;
 }
+
+export type CatResourceStatus = 'ok' | 'error';

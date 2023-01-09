@@ -1,5 +1,4 @@
-export type CatResourceStatus = 'ok' | 'error';
-
+import { CatResourceStatus } from '@sharenergy-challenge/shared-types';
 export class CatResource {
   private _url: URL | null;
   private _status: CatResourceStatus;
