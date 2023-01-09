@@ -8,6 +8,7 @@ import Login from './pages/login';
 const Home = lazy(() => import('./pages/home'));
 const HttpCat = lazy(() => import('./pages/http-cat'));
 const RandomDog = lazy(() => import('./pages/random-dog'));
+const Clients = lazy(() => import('./pages/clients'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,14 @@ export default function App() {
             element={
               <Suspense fallback={<Header path="/random-dog" />}>
                 <RandomDog />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/clients"
+            element={
+              <Suspense fallback={<Header path="/clients" />}>
+                <Clients />
               </Suspense>
             }
           />
