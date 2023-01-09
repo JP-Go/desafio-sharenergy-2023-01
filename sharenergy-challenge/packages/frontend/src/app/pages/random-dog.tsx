@@ -39,7 +39,7 @@ export default function RandomDog() {
             className="h-fit mx-auto rounded-lg px-4 py-2 bg-indigo-500 hover:bg-indigo-600 font-semibold text-white"
             onClick={() => refetch()}
           >
-            Quero um Dog!
+            Quero um Dog 🐶!
           </button>
         </div>
         <div className="mx-auto w-3/4 h-3/4 mt-8 rounded-lg">
@@ -47,7 +47,7 @@ export default function RandomDog() {
             <Spinner />
           ) : contentType === 'image' ? (
             <img
-              className="w-80 h-80 mx-auto object-scale-down"
+              className="w-1/2 h-1/2 mx-auto object-scale-down"
               width={400}
               height={300}
               src={data}
@@ -55,7 +55,7 @@ export default function RandomDog() {
             />
           ) : (
             <video
-              className="w-80 h-80 mx-auto"
+              className="w-1/2 h-1/2 mx-auto"
               width={400}
               height={300}
               src={data}
