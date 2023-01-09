@@ -1,20 +1,22 @@
+import Card from './Card';
+
 export interface UserProps {
-  pictureUrl: string;
   fullName: string;
   email: string;
   username: string;
   age: number;
+  pictureUrl: string;
 }
 
 export default function User({
-  pictureUrl,
-  age,
-  fullName,
-  email,
   username,
+  pictureUrl,
+  fullName,
+  age,
+  email,
 }: UserProps) {
   return (
-    <div className="w-full bg-white mx-auto flex items-center gap-8 p-4 rounded-lg leading-relaxed">
+    <Card key={username}>
       <img
         src={pictureUrl}
         alt={pictureUrl}
@@ -35,6 +37,6 @@ export default function User({
           {username}
         </p>
       </div>
-    </div>
+    </Card>
   );
 }
