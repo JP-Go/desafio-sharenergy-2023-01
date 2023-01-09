@@ -46,7 +46,7 @@ export default function CreateClientForm() {
       name,
       cpf,
       email,
-      phone,
+      phone: phone.replace(/-/g, ''),
       address: {
         city,
         cep: cep.replace('-', ''),
@@ -60,7 +60,11 @@ export default function CreateClientForm() {
       setMessage('Cadastrado com sucesso');
       navigate('/clients');
     } catch (err: any) {
-      setError(err.response.data.message[0]);
+      const error =
+        typeof err.response.data.message === 'string'
+          ? err.response.data.message
+          : err.response.data.message[0];
+      setError(error);
     }
   }
 
