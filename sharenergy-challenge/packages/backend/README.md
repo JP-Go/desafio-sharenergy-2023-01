@@ -1,4 +1,4 @@
-# Backend da aplicação
+# Backend do projeto
 
 Uma API simples com duas principais rotas:
 
