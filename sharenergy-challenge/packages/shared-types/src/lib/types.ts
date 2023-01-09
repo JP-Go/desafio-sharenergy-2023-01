@@ -6,7 +6,7 @@ export interface AddressProps {
   number: string;
 }
 
-export interface HttpClientReponse {
+export interface HttpClientResponse {
   id: string;
   name: string;
   cpf: string;
