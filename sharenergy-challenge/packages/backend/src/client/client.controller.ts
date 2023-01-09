@@ -13,7 +13,7 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { HttpClientMapper } from './mappers/http-client-mapper';
 
-@Controller('client')
+@Controller('clients')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
