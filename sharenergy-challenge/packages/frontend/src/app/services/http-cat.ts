@@ -1,8 +1,9 @@
+import { CatResourceStatus } from '@sharenergy-challenge/shared-types';
 import axios, { AxiosInstance } from 'axios';
 
 interface HttpCatApiResponse {
   url: string | null;
-  status: 'ok' | 'error';
+  status: CatResourceStatus;
 }
 
 const HttpCatApiService = axios.create({
