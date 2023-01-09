@@ -1,8 +1,9 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useAuth } from '../context/authContext';
 import LoginForm from '../components/LoginForm';
 import SnackBar from '../components/SnackBar';
-import { useAuth } from '../context/authContext';
 
 const Login = () => {
   const { authState, login } = useAuth();
