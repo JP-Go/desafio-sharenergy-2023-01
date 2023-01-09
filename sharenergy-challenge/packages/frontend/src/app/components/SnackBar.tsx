@@ -16,9 +16,7 @@ export default function SnackBar({
   durationInMs,
 }: SnackBarProps) {
   useEffect(() => {
-    console.log('Componente montado/re-renderizado');
     if (shouldOpen) {
-      console.log('setTimeout foi iniciado');
       setTimeout(() => {
         onClose();
       }, durationInMs);
