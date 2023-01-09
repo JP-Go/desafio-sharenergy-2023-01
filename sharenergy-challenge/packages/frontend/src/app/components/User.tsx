@@ -16,7 +16,7 @@ export default function User({
   email,
 }: UserProps) {
   return (
-    <Card key={username}>
+    <Card key={username} className="p-4">
       <img
         src={pictureUrl}
         alt={pictureUrl}
