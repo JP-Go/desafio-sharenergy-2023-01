@@ -1,5 +1,5 @@
 import { Client } from './entities/client';
-import { AddressProps } from './entities/address';
+import { AddressProps } from '@sharenergy-challenge/shared-types';
 import { Replace } from '../helpers/replace';
 
 export abstract class ClientRepository {

@@ -1,15 +1,7 @@
 import { CreateClientDto } from '../dto/create-client.dto';
-import { Address, AddressProps } from '../entities/address';
+import { Address } from '../entities/address';
 import { Client } from '../entities/client';
-
-interface HttpClientReponse {
-  id: string;
-  name: string;
-  cpf: string;
-  email: string;
-  phone: string;
-  address: AddressProps;
-}
+import { HttpClientReponse } from '@sharenergy-challenge/shared-types'
 
 export class HttpClientMapper {
   static toHttp(client: Client): HttpClientReponse {

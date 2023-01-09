@@ -1,10 +1,4 @@
-export interface AddressProps {
-  city: string;
-  cep: string;
-  state: string;
-  street: string;
-  number: string;
-}
+import { AddressProps } from '@sharenergy-challenge/shared-types';
 
 export class Address {
   private _props: AddressProps;

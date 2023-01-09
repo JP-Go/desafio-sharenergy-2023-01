@@ -1,9 +1,7 @@
 import { ClientDocument } from '../schemas/client.schema';
 import { Client, ClientProps } from '../../../client/entities/client';
-import {
-  Address,
-  AddressProps,
-} from 'packages/backend/src/client/entities/address';
+import { Address } from '../../../client/entities/address';
+import { AddressProps } from '@sharenergy-challenge/shared-types';
 
 export class ClientMapper {
   static toDomain({

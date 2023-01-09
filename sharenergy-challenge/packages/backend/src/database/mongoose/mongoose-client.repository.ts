@@ -9,7 +9,7 @@ import { ClientNotFound } from '../../client/errors/client-not-found';
 import { ClientRepository } from '../../client/client.repository';
 import { ClientDocument, Client as ClientModel } from './schemas/client.schema';
 import { Client } from '../../client/entities/client';
-import { AddressProps } from '../../client/entities/address';
+import { AddressProps } from '@sharenergy-challenge/shared-types';
 import { Replace } from '../../helpers/replace';
 
 @Injectable()
