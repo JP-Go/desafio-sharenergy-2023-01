@@ -43,14 +43,15 @@ export default function ClientDataForm({ updateField }: ClientDataFormProps) {
           onChange={(e) => updateField({ email: e.target.value })}
         />
         <label htmlFor="phone" className="py-2">
-          Telefone (somente dígitos com DDD):
+          Telefone (formato: DD-XXXXX-XXXX):
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
-          type="tel"
+          type="text"
           required
           name="phone"
-          placeholder="86966667777"
+          placeholder="86-96666-7777"
+          pattern="\d{2}-\d{5}-\d{4}"
           onChange={(e) => updateField({ phone: e.target.value })}
         />
       </div>
