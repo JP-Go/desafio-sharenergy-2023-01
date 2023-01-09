@@ -75,10 +75,21 @@ export default function Home() {
         </div>
 
         <div className="mx-auto flex flex-col gap-4 mt-4 mb-8">
-          {isLoading ? (
+          {isLoading && !data ? (
             <LoadingUser />
           ) : (
-            filteredUsers.map((user) => <User key={user.username} {...user} />)
+            filteredUsers.map(
+              ({ username, pictureUrl, fullName, age, email }) => (
+                <User
+                  key={username}
+                  username={username}
+                  pictureUrl={pictureUrl}
+                  fullName={fullName}
+                  age={age}
+                  email={email}
+                />
+              )
+            )
           )}
         </div>
 
