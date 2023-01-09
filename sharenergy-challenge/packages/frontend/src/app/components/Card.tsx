@@ -1,12 +1,14 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface CardProps {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export default function Card({ children }: CardProps) {
+export default function Card({ children, className }: CardProps) {
   return (
-    <div className="w-full bg-white mx-auto flex items-center gap-8 p-4 rounded-lg leading-relaxed">
+    <div
+      className={`w-full bg-white mx-auto flex items-center gap-8 rounded-lg leading-relaxed ${className}`}
+    >
       {children}
     </div>
   );
