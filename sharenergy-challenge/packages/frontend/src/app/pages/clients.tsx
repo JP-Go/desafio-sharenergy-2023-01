@@ -17,8 +17,6 @@ export default function Clients() {
     name.match(new RegExp(query, 'i'))
   );
 
-  console.log(open);
-
   return (
     <AuthedPage>
       <Header path="/clients" />
@@ -37,7 +35,7 @@ export default function Clients() {
           <button
             className="ml-auto bg-indigo-500 text-white p-2 rounded-lg"
             type="button"
-            onClick={() => navigate('/clients/new')}
+            onClick={() => navigate('/clients/new', { replace: true })}
           >
             Adicionar Cliente
           </button>

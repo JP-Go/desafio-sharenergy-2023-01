@@ -9,6 +9,7 @@ const Home = lazy(() => import('./pages/home'));
 const HttpCat = lazy(() => import('./pages/http-cat'));
 const RandomDog = lazy(() => import('./pages/random-dog'));
 const Clients = lazy(() => import('./pages/clients'));
+const CreateClient = lazy(() => import('./pages/create-client'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -49,14 +50,24 @@ export default function App() {
               </Suspense>
             }
           />
-          <Route
-            path="/clients"
-            element={
-              <Suspense fallback={<Header path="/clients" />}>
-                <Clients />
-              </Suspense>
-            }
-          />
+          <Route path="/clients">
+            <Route
+              index
+              element={
+                <Suspense fallback={<Header path="/clients" />}>
+                  <Clients />
+                </Suspense>
+              }
+            />
+            <Route
+              path="new"
+              element={
+                <Suspense fallback={<Header path="/clients" />}>
+                  <CreateClient />
+                </Suspense>
+              }
+            />
+          </Route>
         </Routes>
       </QueryClientProvider>
     </AuthProvider>
