@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { fetchUsers } from '../services/randomUserApi';
+import { fetchUsers } from '../services/random-user-api';
 
 import Header from '../components/Header';
 import User, { UserProps } from '../components/User';

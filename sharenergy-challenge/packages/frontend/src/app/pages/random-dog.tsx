@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import Header from '../components/Header';
 import Spinner from '../components/Spinner';
-import { fetchDog } from '../services/randomDog';
+import { fetchDog } from '../services/random-dog';
 import AuthedPage from './authed-page';
 
 export default function RandomDog() {
