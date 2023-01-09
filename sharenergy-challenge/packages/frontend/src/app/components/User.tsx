@@ -16,7 +16,10 @@ export default function User({
   email,
 }: UserProps) {
   return (
-    <Card key={username} className="p-4">
+    <Card
+      key={username}
+      className="p-4 mx-auto flex items-center gap-8 leading-relaxed"
+    >
       <img
         src={pictureUrl}
         alt={pictureUrl}
