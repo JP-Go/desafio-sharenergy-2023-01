@@ -37,13 +37,14 @@ export default function Header({ path }: HeaderProps) {
         >
           Random Dog
         </Link>
-        <li
+        <Link
+          to={'/clients'}
           className={`${
             path === '/clients' ? 'active-header-item' : 'inactive-header-item'
           }`}
         >
           Clients
-        </li>
+        </Link>
         <li
           className="px-4 py-2 h-full text-white cursor-pointer bg-red-500 hover:bg-red-600"
           onClick={logout}
