@@ -9,3 +9,11 @@ export async function fetchClients(service: AxiosInstance = clientApiService) {
   const clients = await service.get<HttpClientResponse[]>('');
   return clients.data;
 }
+
+export async function sendForm(
+  formData: any,
+  service: AxiosInstance = clientApiService
+) {
+  const res = await service.post('', formData);
+  return res;
+}
