@@ -6,14 +6,18 @@ import AuthedPage from './authed-page';
 import { fetchClients } from '../services/client-api';
 import { formatCpfString, formatPhoneString } from '../utils/formatters';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Clients() {
   const { data: clients } = useQuery('get-clients', () => fetchClients());
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
   const filteredClients = clients?.filter(({ name }) =>
     name.match(new RegExp(query, 'i'))
   );
+
+  console.log(open);
 
   return (
     <AuthedPage>
@@ -30,6 +34,13 @@ export default function Clients() {
               setQuery(e.target.value);
             }}
           />
+          <button
+            className="ml-auto bg-indigo-500 text-white p-2 rounded-lg"
+            type="button"
+            onClick={() => navigate('/clients/new')}
+          >
+            Adicionar Cliente
+          </button>
         </div>
         <table className="table-auto border-collapse w-full mx-auto">
           <thead className="bg-indigo-500 text-white rounded-lg text-xl">
