@@ -2,7 +2,7 @@
 
 Minha solução para o desafio Sharenergy 2023-01
 
-## :thunder: Rodando o projeto
+## :zap: Rodando o projeto
 
 1. Clone esse repositório com `git clone https://github.com/JP-Go/desafio-sharenergy-2023-01.git`
 1. Abra a pasta desse repositório no terminal de sua escolha
