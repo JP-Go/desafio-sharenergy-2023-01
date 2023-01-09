@@ -11,6 +11,10 @@ Minha solução para o desafio Sharenergy 2023-01
 1. Abra seu navegador no endereço [http://localhost:4200](http://localhost:4200)
 1. Entre com as credenciais padrão: Usuário `desafiosharenergy` e senha `sh@r3n3rgy`
 
+## :question: Saber mais
+
+Cada aplicação desse projeto possui seu próprio README. Vá para a pasta incial
+de cada aplicação para saber mais sobre ela. (Ex: `packages/backend` ou `packages/frontend`)
 
 ## :hammer: Tecnologias utilizadas
 
@@ -36,5 +40,7 @@ Minha solução para o desafio Sharenergy 2023-01
   - Jest, para testes automatizados [https://jestjs.io](https://jestjs.io)
   - Random User API, para gerar dados fictícios de usuários [https://randomuser.me](https://randomuser.me)
   - HTTP Cats API, para gerar foto aleatória de gatos correspondente a códigos HTTP [https://http.cat/](https://http.cat/)
-  - Random dog API, para gerar foto aleatória de um cachorro [https://github.com/AdenFlorian/random.dog](https://github.com/AdenFlorian/random.dog)
-  - Axios, para requisições http ([https://www.axios-http.com/ptbr/docs/intro](https://www.axios-http.com/ptbr/docs/intro))
+  - Random dog API, para gerar foto aleatória de um cachorro
+    [https://github.com/AdenFlorian/random.dog](https://github.com/AdenFlorian/random.dog)
+  - Axios, para requisições http no frontend e no backend
+    ([https://www.axios-http.com/ptbr/docs/intro](https://www.axios-http.com/ptbr/docs/intro))
