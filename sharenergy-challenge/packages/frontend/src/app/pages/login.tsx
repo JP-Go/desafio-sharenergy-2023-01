@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/authContext';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/Form/LoginForm';
 import SnackBar from '../components/SnackBar';
 
 const Login = () => {
