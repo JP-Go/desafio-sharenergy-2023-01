@@ -53,11 +53,9 @@ export default function Home() {
         <div className="w-full mb-4 flex items-center justify-center gap-4">
           <span>Busca: </span>
           <input
-            className="w-3/5 px-1 border border-indigo-500 rounded-lg outline-none"
+            className="w-3/5 px-1 py-1 border border-indigo-500 rounded-lg outline-none"
             type="text"
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
+            onChange={(e) => setQuery(e.target.value)}
             value={query}
             autoFocus
           />
