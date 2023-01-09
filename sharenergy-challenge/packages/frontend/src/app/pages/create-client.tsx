@@ -5,6 +5,8 @@ import AuthedPage from './authed-page';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import { useNavigate } from 'react-router-dom';
+import SnackBar from '../components/SnackBar';
+import { sendForm } from '../services/client-api';
 
 export interface FormData {
   city: string;
@@ -32,11 +34,34 @@ const initialFormData = {
 
 export default function CreateClientForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  function sendForm(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log(formData);
+    const { name, cpf, email, phone, city, cep, state, street, number } =
+      formData;
+    const data = {
+      name,
+      cpf,
+      email,
+      phone,
+      address: {
+        city,
+        cep: cep.replace('-', ''),
+        state,
+        street,
+        number,
+      },
+    };
+    try {
+      await sendForm(data);
+      setMessage('Cadastrado com sucesso');
+      navigate('/clients');
+    } catch (err: any) {
+      setError(err.response.data.message[0]);
+    }
   }
 
   function updateField(fields: Partial<FormData>) {
@@ -50,7 +75,7 @@ export default function CreateClientForm() {
         <h1 className="font-bold text-2xl text-center mb-8">
           Preencha os dados do cliente
         </h1>
-        <form onSubmit={sendForm}>
+        <form onSubmit={handleSubmit}>
           <div className="flex gap-10 lg:gap-20 justify-center">
             <ClientDataForm updateField={updateField} />
             <AddressForm updateField={updateField} />
@@ -70,6 +95,20 @@ export default function CreateClientForm() {
           ⬅ Voltar
         </button>
       </Card>
+      <SnackBar
+        message={error}
+        variant="error"
+        onClose={() => setError('')}
+        durationInMs={3000}
+        shouldOpen={error !== ''}
+      />
+      <SnackBar
+        message={message}
+        variant="warn"
+        onClose={() => setMessage('')}
+        durationInMs={3000}
+        shouldOpen={message !== ''}
+      />
     </AuthedPage>
   );
 }

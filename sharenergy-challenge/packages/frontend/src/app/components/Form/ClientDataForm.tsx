@@ -36,7 +36,7 @@ export default function ClientDataForm({ updateField }: ClientDataFormProps) {
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
-          type="text"
+          type="email"
           required
           name="email"
           placeholder="E-mail"
@@ -47,10 +47,10 @@ export default function ClientDataForm({ updateField }: ClientDataFormProps) {
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
-          type="text"
+          type="tel"
           required
           name="phone"
-          placeholder="Telefone"
+          placeholder="86966667777"
           onChange={(e) => updateField({ phone: e.target.value })}
         />
       </div>

@@ -39,7 +39,7 @@ export default function ClientDataForm({ updateField }: AddressFormProps) {
           type="text"
           required
           name="street"
-          placeholder="E-mail"
+          placeholder="Rua, Avenida"
           onChange={(e) => updateField({ street: e.target.value })}
         />
         <label htmlFor="number" className="py-2">
@@ -50,18 +50,19 @@ export default function ClientDataForm({ updateField }: AddressFormProps) {
           type="text"
           required
           name="number"
-          placeholder="Telefone"
+          placeholder="Nº"
           onChange={(e) => updateField({ number: e.target.value })}
         />
         <label htmlFor="cep" className="py-2">
-          CEP
+          CEP (formato: XXXXX-XXX)
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
           type="text"
           required
           name="cep"
-          placeholder="Telefone"
+          pattern="\d{5}-\d{3}"
+          placeholder="00000-000"
           onChange={(e) => updateField({ cep: e.target.value })}
         />
       </div>
