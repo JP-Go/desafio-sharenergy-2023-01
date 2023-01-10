@@ -10,6 +10,7 @@ const HttpCat = lazy(() => import('./pages/http-cat'));
 const RandomDog = lazy(() => import('./pages/random-dog'));
 const Clients = lazy(() => import('./pages/clients'));
 const CreateClient = lazy(() => import('./pages/create-client'));
+const Client = lazy(() => import('./pages/client'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -59,6 +60,16 @@ export default function App() {
                 </Suspense>
               }
             />
+            <Route path=":id">
+              <Route
+                index
+                element={
+                  <Suspense fallback={<Header path="/clients" />}>
+                    <Client />
+                  </Suspense>
+                }
+              />
+            </Route>
             <Route
               path="new"
               element={
