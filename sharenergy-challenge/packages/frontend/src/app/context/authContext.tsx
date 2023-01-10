@@ -32,24 +32,22 @@ function reducer(state: AuthState, action: AuthActions) {
   }
 }
 
+function checkBrowserStorage() {
+  const localStorageCheck = localStorage.getItem('app-remember-login') !== null;
+  const sessionStorageCheck = sessionStorage.getItem('app-loggedin') !== null;
+
+  if (localStorageCheck) {
+    return true;
+  }
+  return sessionStorageCheck;
+}
+
 export const AuthContext = createContext<AuthContextInterface | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  function checkBrowserStorage() {
-    const localStorageCheck =
-      localStorage.getItem('app-remember-login') !== null;
-    const sessionStorageCheck = sessionStorage.getItem('app-loggedin') !== null;
-
-    if (localStorageCheck) {
-      return true;
-    }
-    return sessionStorageCheck;
-  }
-
   const [authState, dispatch] = useReducer(reducer, {
     loggedIn: checkBrowserStorage(),
   });
-
   function login(username: string, password: string) {
     dispatch({ kind: 'login', args: { username, password } });
     if (authState.loggedIn) sessionStorage.setItem('app-loggedin', 'true');
