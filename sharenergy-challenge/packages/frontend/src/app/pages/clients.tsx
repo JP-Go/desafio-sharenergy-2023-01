@@ -3,21 +3,36 @@ import { useQuery } from 'react-query';
 import Header from '../components/Header';
 import AuthedPage from './authed-page';
 
-import { fetchClients } from '../services/client-api';
-import { formatCpfString, formatPhoneString } from '../utils/formatters';
+import { deleteClient, fetchClients } from '../services/client-api';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+export type ButtonClickEvent = React.MouseEvent<HTMLButtonElement>;
 
 export default function Clients() {
-  const { data: clients } = useQuery('get-clients', () => fetchClients(), {
-    refetchOnMount: true,
-  });
+  const { data: clients, refetch } = useQuery(
+    'get-clients',
+    () => fetchClients(),
+    {
+      refetchOnMount: true,
+    }
+  );
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
   const filteredClients = clients?.filter(({ name }) =>
     name.match(new RegExp(query, 'i'))
   );
+
+  async function deleteClientHandle(e: ButtonClickEvent, id: string) {
+    e.stopPropagation();
+    await deleteClient(id);
+    refetch();
+  }
+
+  function editClientHandle(e: ButtonClickEvent, id: string) {
+    e.stopPropagation();
+    navigate(`/clients/${id}/edit`, { state: { id } });
+  }
 
   return (
     <AuthedPage>
@@ -43,12 +58,13 @@ export default function Clients() {
           </button>
         </div>
         <table className="table-auto border-collapse w-full mx-auto">
-          <thead className="bg-indigo-500 text-white rounded-lg text-xl">
+          <thead className="bg-indigo-500 text-white rounded-lg text-lg">
             <tr className="w-full">
               <th>Nome</th>
               <th>Telefone</th>
               <th>E-mail</th>
               <th>CPF</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
