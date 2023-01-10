@@ -15,15 +15,12 @@ export default function RandomDog() {
     imgTypes: string[] = ['jpg', 'jpeg', 'png', 'gif', 'svg']
   ): 'image' | 'video' {
     const extension = dataUrl?.split('.').at(-1);
-    console.log(extension);
     return imgTypes.some((item) => item === extension?.toLowerCase())
       ? 'image'
       : 'video';
   }
 
   const contentType = decideContentTypeFromUrl(data ? data : '.img');
-
-  console.log(contentType);
 
   return (
     <AuthedPage>
