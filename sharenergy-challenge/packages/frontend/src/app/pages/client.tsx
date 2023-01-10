@@ -18,8 +18,6 @@ export default function Client() {
 
   const navigate = useNavigate();
 
-  console.log(client);
-
   return (
     <AuthedPage>
       <Header path="/clients" />
@@ -30,6 +28,13 @@ export default function Client() {
           className="w-fit absolute -top-4 -left-4 bg-indigo-500 text-white p-2 rounded-lg"
         >
           ⬅ Voltar
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate(`clients/${id}/edit`, { replace: true })}
+          className="w-fit absolute -top-4 -right-4 bg-indigo-500 text-white p-2 rounded-lg"
+        >
+          Editar
         </button>
         <Card className="mt-8 p-8">
           <h1 className="font-bold text-2xl text-center">Dados do cliente</h1>
