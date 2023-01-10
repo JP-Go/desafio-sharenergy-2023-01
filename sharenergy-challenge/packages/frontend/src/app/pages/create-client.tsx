@@ -7,10 +7,22 @@ import { useClientForm } from '../hooks/use-client-form';
 import { useNavigate } from 'react-router-dom';
 import { createClient } from '../services/client-api';
 
+const initialFormData = {
+  city: '',
+  cep: '',
+  state: '',
+  street: '',
+  number: '',
+  name: '',
+  cpf: '',
+  email: '',
+  phone: '',
+};
+
 export default function CreateClientForm() {
   const navigate = useNavigate();
   const { setMessage, setError, message, error, updateFields, formData } =
-    useClientForm();
+    useClientForm(initialFormData);
 
   function handleBack() {
     navigate('/clients', { replace: true });
