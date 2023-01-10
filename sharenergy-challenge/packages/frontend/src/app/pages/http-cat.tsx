@@ -37,7 +37,11 @@ export default function HttpCat() {
         {status === 'loading' ? (
           <Spinner />
         ) : (
-          <img className="w-1/2 mt-8" src={data} alt={`Cat code: ${code}`} />
+          <img
+            className="w-1/2 mt-8"
+            src={data.url}
+            alt={`Cat code: ${code}`}
+          />
         )}
       </main>
     </AuthedPage>

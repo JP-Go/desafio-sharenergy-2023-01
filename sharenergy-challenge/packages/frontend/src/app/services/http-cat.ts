@@ -14,9 +14,16 @@ export async function fetchHttCatLink(
   code: number,
   service: AxiosInstance = HttpCatApiService
 ) {
-  const response = await service.get<HttpCatApiResponse>(`${code}`);
-  const data = response.data;
-  return data.status === 'ok'
-    ? String(data.url)
-    : '/assets/images/cat-not-found.svg';
+  try {
+    const response = await service.get<HttpCatApiResponse>(`${code}`);
+    const data = response.data;
+    return data;
+  } catch (err: any) {
+    if (err.response.status == 404) {
+      return {
+        url: '/assets/images/cat-not-found.svg',
+        status: 'error',
+      };
+    }
+  }
 }
