@@ -14,3 +14,9 @@ export function formatCpfString(cpfString: string) {
   const verifiers = cpfString.slice(9, 12);
   return `${firstDigits}-${verifiers}`;
 }
+
+export function formatCepString(cepString: string) {
+  const sector = cepString.slice(0, 6);
+  const distribution = cepString.slice(6, 9);
+  return `${sector}-${distribution} `;
+}
