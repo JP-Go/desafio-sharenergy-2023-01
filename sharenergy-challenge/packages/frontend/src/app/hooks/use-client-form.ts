@@ -1,19 +1,7 @@
 import { useState } from 'react';
 import { ClientFormData } from '../@types/form-data';
 
-const initialFormData = {
-  city: '',
-  cep: '',
-  state: '',
-  street: '',
-  number: '',
-  name: '',
-  cpf: '',
-  email: '',
-  phone: '',
-};
-
-export function useClientForm() {
+export function useClientForm(initialFormData: ClientFormData) {
   const [formData, setFormData] = useState<ClientFormData>(initialFormData);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
