@@ -6,6 +6,8 @@ import AuthedPage from './authed-page';
 import { deleteClient, fetchClients } from '../services/client-api';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ClientTableRow from '../components/ClientTableRow';
+
 export type ButtonClickEvent = React.MouseEvent<HTMLButtonElement>;
 
 export default function Clients() {
@@ -69,16 +71,16 @@ export default function Clients() {
           </thead>
           <tbody>
             {filteredClients?.map(({ id, name, phone, email, cpf }) => (
-              <tr
-                onClick={() => console.log(`redirecting to /clients/${id}`)}
+              <ClientTableRow
                 key={id}
-                className="cursor-pointer text-center bg-white border font-normal hover:scale-110 transition-all duration-300"
-              >
-                <td className="py-2">{name}</td>
-                <td className="py-2">{formatPhoneString(phone)}</td>
-                <td className="py-2">{email}</td>
-                <td className="py-2">{formatCpfString(cpf)}</td>
-              </tr>
+                id={id}
+                name={name}
+                phone={phone}
+                email={email}
+                cpf={cpf}
+                editClientHandle={editClientHandle}
+                deleteClientHandle={deleteClientHandle}
+              />
             ))}
           </tbody>
         </table>
