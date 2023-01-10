@@ -21,7 +21,7 @@ function reducer(state: AuthState, action: AuthActions) {
       }
       //TODO: Remove dummy credentials
       const { password, username } = args;
-      if (username == 'test' && password == 'test') {
+      if (username == 'desafiosharenergy' && password == 'sh@r3n3rgy') {
         return { ...state, loggedIn: true };
       }
       return { ...state, loggedIn: false };
