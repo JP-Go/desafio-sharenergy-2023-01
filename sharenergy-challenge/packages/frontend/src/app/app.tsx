@@ -69,6 +69,14 @@ export default function App() {
                   </Suspense>
                 }
               />
+              <Route
+                path="edit"
+                element={
+                  <Suspense fallback={<Header path="/clients" />}>
+                    <Client />
+                  </Suspense>
+                }
+              />
             </Route>
             <Route
               path="new"
