@@ -1,10 +1,18 @@
-import { FormData } from '../../pages/create-client';
+import { useState } from 'react';
+import { ClientFormData } from '../../@types/form-data';
+import { formatCepString, formatCpfString } from '../../utils/formatters';
 
 interface AddressFormProps {
-  updateField: (fields: Partial<FormData>) => void;
+  updateField: (fields: Partial<ClientFormData>) => void;
 }
 
 export default function ClientDataForm({ updateField }: AddressFormProps) {
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+  const [number, setNumber] = useState('');
+  const [cep, setCep] = useState('');
+
   return (
     <div>
       <h2 className="font-bold text-lg">Dados de endereço</h2>
@@ -17,8 +25,12 @@ export default function ClientDataForm({ updateField }: AddressFormProps) {
           type="text"
           required
           name="state"
+          value={state}
           placeholder="Estado"
-          onChange={(e) => updateField({ state: e.target.value })}
+          onChange={(e) => {
+            setState(e.target.value);
+            updateField({ state: e.target.value });
+          }}
         />
         <label htmlFor="city" className="py-2">
           Cidade:
@@ -28,8 +40,12 @@ export default function ClientDataForm({ updateField }: AddressFormProps) {
           type="text"
           required
           name="city"
+          value={city}
           placeholder="Cidade"
-          onChange={(e) => updateField({ city: e.target.value })}
+          onChange={(e) => {
+            setCity(e.target.value);
+            updateField({ city: e.target.value });
+          }}
         />
         <label htmlFor="street" className="py-2">
           Rua:
@@ -38,9 +54,13 @@ export default function ClientDataForm({ updateField }: AddressFormProps) {
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
           type="text"
           required
+          value={street}
           name="street"
           placeholder="Rua, Avenida"
-          onChange={(e) => updateField({ street: e.target.value })}
+          onChange={(e) => {
+            setStreet(e.target.value);
+            updateField({ street: e.target.value });
+          }}
         />
         <label htmlFor="number" className="py-2">
           Número
@@ -49,21 +69,29 @@ export default function ClientDataForm({ updateField }: AddressFormProps) {
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
           type="text"
           required
+          value={number}
           name="number"
           placeholder="Nº"
-          onChange={(e) => updateField({ number: e.target.value })}
+          onChange={(e) => {
+            setNumber(e.target.value);
+            updateField({ number: e.target.value });
+          }}
         />
         <label htmlFor="cep" className="py-2">
-          CEP (formato: XXXXX-XXX)
+          CEP
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
           type="text"
           required
           name="cep"
-          pattern="\d{5}-\d{3}"
+          value={cep}
           placeholder="00000-000"
-          onChange={(e) => updateField({ cep: e.target.value })}
+          onChange={(e) => {
+            const value = e.target.value.replace(/[^0-9]/g, '');
+            setCep(value.length === 8 ? formatCepString(value) : value);
+            updateField({ cep: value });
+          }}
         />
       </div>
     </div>

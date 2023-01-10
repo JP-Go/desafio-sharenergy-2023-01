@@ -1,16 +1,23 @@
-import { FormData } from '../../pages/create-client';
+import { useState } from 'react';
+import { ClientFormData } from '../../@types/form-data';
+import { formatCpfString, formatPhoneString } from '../../utils/formatters';
 
 interface ClientDataFormProps {
-  updateField: (fields: Partial<FormData>) => void;
+  updateField: (fields: Partial<ClientFormData>) => void;
 }
 
 export default function ClientDataForm({ updateField }: ClientDataFormProps) {
+  const [name, setName] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+
   return (
     <div>
       <h2 className="font-bold text-lg">Dados do cliente</h2>
       <div className="flex flex-col gap-1">
         <label htmlFor="name" className="py-2">
-          Nome:
+          Nome completo:
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
@@ -18,7 +25,11 @@ export default function ClientDataForm({ updateField }: ClientDataFormProps) {
           required
           name="name"
           placeholder="Nome"
-          onChange={(e) => updateField({ name: e.target.value })}
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+            updateField({ name: e.target.value });
+          }}
         />
         <label htmlFor="cpf" className="py-2">
           CPF:
@@ -28,8 +39,13 @@ export default function ClientDataForm({ updateField }: ClientDataFormProps) {
           type="text"
           required
           name="cpf"
-          placeholder="CPF"
-          onChange={(e) => updateField({ cpf: e.target.value })}
+          value={cpf}
+          placeholder="555.666.777-88"
+          onChange={(e) => {
+            const value = e.target.value.replace(/[^0-9]/g, '');
+            setCpf(value.length === 11 ? formatCpfString(value) : value);
+            updateField({ cpf: value });
+          }}
         />
         <label htmlFor="email" className="py-2">
           Email:
@@ -38,21 +54,29 @@ export default function ClientDataForm({ updateField }: ClientDataFormProps) {
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
           type="email"
           required
+          value={email}
           name="email"
           placeholder="E-mail"
-          onChange={(e) => updateField({ email: e.target.value })}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            updateField({ email: e.target.value });
+          }}
         />
         <label htmlFor="phone" className="py-2">
-          Telefone (formato: DD-XXXXX-XXXX):
+          Telefone:
         </label>
         <input
           className="rounded-lg outline outline-1 outline-indigo-500 p-2"
           type="text"
           required
           name="phone"
-          placeholder="86-96666-7777"
-          pattern="\d{2}-\d{5}-\d{4}"
-          onChange={(e) => updateField({ phone: e.target.value })}
+          value={phone}
+          placeholder="(86)99999-7777"
+          onChange={(e) => {
+            const value = e.target.value.replace(/[^0-9]/g, '');
+            setPhone(value.length === 11 ? formatPhoneString(value) : value);
+            updateField({ phone: value });
+          }}
         />
       </div>
     </div>
